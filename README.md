@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Rate Updater
 
-## Getting Started
+Aplicación que permite actualizar tasas desde un Gsheet embebido. 
 
-First, run the development server:
+## Implementación Gsheet
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+El documento fue embebido en la página lo que permite ser editado directamente desde el iframe, con esto:
+
+- Las ediciones realizadas en el documento gatillan un App script asociado al gsheet que notifica al webhook en caso de cambio de tasa, enviando la información necesaria (ID de operación, nueva tasa y correo).
+- Para fines de evaluación, el Google Sheet está actualmente configurado como público. 
+
+En una versión productiva, se implementaría control de permisos por usuario y protección de escritura más robusta, pero para esta entrega se prioriza  la facilidad de revisión.
+
+## Variables de Entorno
+Crear un archivo `.env.local` con las siguientes claves:
+
+```env
+SUPABASE_URL=...
+SUPABASE_ANON_KEY=...
+NEXT_PUBLIC_GSHEET=...
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Correr en local
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Hay que instalar dependencias y correr servidor:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm install
+npm run dev
+```
