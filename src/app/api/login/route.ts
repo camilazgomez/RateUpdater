@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
+import bcrypt from "bcryptjs";
 
 export async function POST(req: Request) {
   const { email, password } = await req.json();
@@ -8,15 +9,20 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Falta rellenar campos." }, { status: 400 });
   }
 
-  const { data, error } = await supabase
+  const { data: user, error } = await supabase
     .from("users") 
     .select("*")
     .eq("email", email)
-    .eq("password", password)
     .single();
 
-  if (error || !data) {
+  if (error || !user) {
     return NextResponse.json({ error: "Credenciales inválidas." }, { status: 401 });
+  }
+
+  const passwordMatches = await bcrypt.compare(password, user.password);
+
+  if (!passwordMatches) {
+    return NextResponse.json({ error: "Contraseña incorrecta." }, { status: 401 });
   }
 
   return NextResponse.json({ success: true });
