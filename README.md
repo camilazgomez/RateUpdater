@@ -2,6 +2,9 @@
 
 Aplicación que permite actualizar tasas desde un Gsheet embebido. 
 
+## Autenticación
+Se creó bbdd en Supabase, esta se utiliza exclusivamente para manejar el login de usuarios, validando credenciales almacenadas con contraseñas hasheadas mediante bcrypt.
+
 ## Implementación Gsheet
 
 El documento fue embebido en la página lo que permite ser editado directamente desde el iframe, con esto:
