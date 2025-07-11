@@ -18,9 +18,9 @@ export default function UpdaterPage() {
     <div className="min-h-screen flex flex-col">
       <Header />
         <main className="flex flex-col items-center justify-center flex-1 px-4 py-8">
-            <h2 className="text-2xl font-semibold mb-6 text-gray-800">Editor tasas en vivo</h2>
+            <h3 className="text-2xl font-semibold mb-6 text-gray-800">Editor tasas en vivo</h3>
             <div className="w-full max-w-4xl bg-white border border-gray-200 shadow-xl rounded-2xl overflow-hidden">
-            <div className="bg-gray-100 px-6 py-3 border-b border-gray-200 text-sm text-gray-700 font-medium">
+            <div className="bg-indigo-50 px-6 py-3 border-b border-gray-200 text-sm text-gray-700 font-medium">
                 Google Sheet - Tasas actuales
             </div>
             <div className="p-4">
