@@ -10,6 +10,7 @@ export default function UpdaterPage() {
   const router = useRouter();
   useEffect(() => {
     const isLoggedIn = localStorage.getItem("isLoggedIn");
+    document.cookie = "isLoggedIn=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     if (!isLoggedIn) {
       router.push("/login");
     }
